@@ -1,0 +1,8 @@
+1,John,Doe,Sales Lead,Sales,100000,Ashley Rodriguez
+2,Mike Chan,Salesperson,Sales,10000,John Doe
+3,Ashley Rodriguez,Lead Engineer,Engineering,150000,NULL
+4,Mervin Tupik,Software Engineer,Engineering,120000,Ashley Rodriguez
+5,Malia Brown,Accountant,Finance,125000,NULL
+6,Sarah Lourd,Legal Team Lead,Legal,250000,NULL
+7,Tom Allen,Lawyer,Legal,190000,Sarah Lourd
+8,Christian Eckenrede,Lead Engineer,Engineering,150000,Mike Chan

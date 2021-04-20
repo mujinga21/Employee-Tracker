@@ -26,3 +26,12 @@ CREATE TABLE employee (
  FOREIGN KEY (manager_id) REFERENCES employee(id)
 );
 
+INSERT INTO department (name,id)
+VALUES ('Sales',1),('Engineering',2),('Finance',3),('Legal',4);
+INSERT INTO employee_role (title, salary,department_id)
+VALUES ('Sales Lead',100000,1),('Salesperson',80000,1),('Lead Engineer', 150000, 2),('Software Engineer', 120000, 2),('Accountant', 125000, 3),('Legal Team Lead', 250000, 4),('lawyer', 190000, 4);
+select * from department;
+select * from employee_role;
+
+
+
