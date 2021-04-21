@@ -249,8 +249,7 @@ connection.connect((err) => {
 //     });
 // };
 
-INSERT INTO department (name) values ('Jane
-', 'Austen');
+INSERT INTO department (name values ('Jane', 'Austen');
 INSERT INTO authors (firstName, lastName) values ('Mark', 'Twain');
 INSERT INTO authors (firstName, lastName) values ('Lewis', 'Carroll');
 INSERT INTO authors (firstName, lastName) values ('Andre', 'Asselin');
