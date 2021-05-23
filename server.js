@@ -1,5 +1,9 @@
+
+
 const mysql = require("mysql2");
 const inquirer = require("inquirer");
+
+
 
 const connection = mysql.createConnection({
   host: "localhost",
@@ -12,7 +16,7 @@ const connection = mysql.createConnection({
 
   // Be sure to update with your own MySQL password!
   password: "1234",
-  database: "employee_trackerDB",
+  database: "employee_tracker",
 });
 connection.connect((err) => {
   if (err) throw err;
@@ -32,7 +36,7 @@ connection.connect((err) => {
 //   });
 // };
 
-const runSearch = () => {
+function runSearch  () {
   inquirer
     .prompt({
       name: "action",
@@ -46,46 +50,75 @@ const runSearch = () => {
         "Update employee role",
         "Update employee manager",
         "Exit",
-      ],
+      ]
     })
-    .then((answer) => {
-      switch (answer.action) {
-        case "view all employees":
-          queryAllEmployee();
-          break;
-        case "View all employees by manager":
-          queryEmployeeByManager();
-          break;
-        case "Add employee":
-          addEmployee();
-          break;
-        case "Remove employee":
-          queryAllEmployee();
-          break;
-        case "Update employee role":
-          queryAllEmployee();
-          break;
-        case "Update employee manager":
-          queryAllEmployee();
-          break;
-        default:
-          
-          connection.end();
+    .then(function(answer) {
+      if(answer.action === 'view all employees'){
+        viewEmployee();
+      }else if (answer.action === 'view all employee by manager'){
+        viewAllEmployeeByManager();
+      }else if (answer.action === 'add  employee'){
+        addEmployee();
+      }else if (answer.action === 'remove an employee'){
+        RemoveEmployee();
+      }else if (answer.action === 'Update employee role'){
+      updateEmployee();
+      }else if (answer.action === 'update employee manager'){
+      updateEmployee();
+      }else if(answer.action === 'exit'){
+        connection.end();
       }
-    });
-};
-
-
-const queryAllEmployee = () => {
-  connection.query("SELECT employee.id,employee.first_name, employee.last_name, role.title, department.name, role.salary, CONCAT(manager.first_name, ' ', manager.last_name)AS manager FROM employee LEFT JOIN role on employee.role_id = role.id LEFT JOIN department on role.department_id = department.id LEFT JOIN employee manager on manager.id = employee.manager_id;"),
-  (err, res) => {
-    if (err) throw err;
-    res.forEach(({ id, first_name, last_name, title, department, salary, manager }) => {
-      console.log(`${id} | ${first_name} | ${last_name} | ${title} | ${department} | ${salary} | ${manager}`);
-    });
-    runSearch();
+      
+    })
   }
+//     .then((answer) => {
+//       console.log('answer', answer);
+//       switch (answer.action) {
+//         case "view all employees":
+//            viewAllEmployee();
+//            break;
+      
+//         case "View all employees by manager":
+//           viewEmployeeByManager();
+//           break;
+        
+//         case "Add employee":
+//            addEmployee();
+//            break;
+          
+//         case "Remove employee":
+//            removeEmployee();
+//            break;
+        
+//         case "Update employee role":
+//            updateEmployeeRole();
+//            break;
+        
+//         case "Update employee manager":
+//            updateEmployeeManager();
+//            break;
+          
+//         case "exit":
+//           connection.end();
+//           break;
+//       }
+//     });
+// };
+
+
+function viewEmployee  () {
+  var query= "SELECT * FROM employee";    
+connection.query(query, function (err, res) {
+  console.log(`Employee:`)
+  res.forEach(employee => {
+    console.log(`ID: $(employee.id'| Name: ${employee.first_name} ${employee.Last_name}  | Role ID: ${employee.role_id} | Manager ID: ${employee.manager_id}`);
+  
+  })
+  runSearch();
+});
 };
+
+
 
 
 
@@ -127,8 +160,6 @@ const queryAllEmployee = () => {
 //   console.log("Inserting a new employee...\n");
 
 // };
-
-
 
 
 
