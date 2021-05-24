@@ -104,12 +104,12 @@ function addEmployee(){
     inquirer.prompt([
   {
     type: "input",
-    name:"firstName",
+    name:"first_name",
     message:"enter your employee first name"
   },
   {
     type: "input",
-    name:"lastName",
+    name:"last_name",
     message:"enter your employee last name"
   },
 {
@@ -120,17 +120,17 @@ function addEmployee(){
 }
 ]).then (answers => {
   const chosenRole = res.find(element => {
-return Element.title === answers.role
+return element.title === answers.role
 });
 console.log(chosenRole.id);
 const newEmployee = {
-  firstName: answers.firstName,
-  lastName: answers.lastName,
-  roleId: chosenRole.id
+  first_name: answers.first_name,
+  last_name: answers.last_name,
+  role_id: chosenRole.id
 };
-connection.query("INSERT INTO employees SET ?", newEmployee, (err, success) => {
+connection.query("INSERT INTO employee SET ?", newEmployee, (err, success) => {
   if (err) throw err;
-  console.log(`${newEmployee.firstName} was added successfully`);
+  console.log(`${newEmployee.first_name} was added successfully`);
   runSearch();
 })
 
@@ -184,16 +184,21 @@ function addDepartment(){
     const department = res.map(element => {
       return element.id})
     inquirer.prompt([
+      // {
+      //   type: "input",
+      //     name:"department_id",
+      //     message:"enter your employee department id",
+      // },
   {
     type: "input",
-    name:"department",
-    message:"enter your department"
+    name:"name",
+    message:"enter your department "
   }
-]).then(function (answers) {
+]).then(function (answer) {
  
-connection.query("INSERT INTO department SET ?", answer, function(err) {
+connection.query("INSERT INTO department SET ?", answer, function(err, res) {
   if (err) throw err;
-  console.log(`${answer.department} was added successfully`);
+  console.log(`${answer.name} was added successfully`);
   runSearch();
 });
 

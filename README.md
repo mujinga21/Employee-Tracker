@@ -1,31 +1,4 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
-function renderLicenseBadge(license) {
-  if (license === "ISC") {
-    return (license =
-      "[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)]");
-  } else if (license == "MIT") {
-    return "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]";
-  } else return "";
-}
-
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
-function renderLicenseLink(license) {
-  if (license === "ISC") {
-    return (license = "(https://opensource.org/licenses/ISC)");
-  } else if (license === "MIT") {
-    return (license = "(https://opensource.org/licenses/MIT)");
-  } else return "";
-}
-
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-function renderLicenseSection(license) {
-  return renderLicenseBadge(license) + renderLicenseLink(license);
-}
-
-// TODO: Create a function to generate markdown for README
+# Employee -tracker
 
 function generateMarkdown(data) {
   return `## ${data.title}
@@ -41,16 +14,19 @@ ${renderLicenseBadge(data.license)}
   * [Question](#question)
   ## Installation
   ${data.installation}
+  Used Mysql, node.js
   ## Usage
   ${data.usage}
+  This is to to create an employee management form that will help the manager add, and view employee, departments and roles.
   ## License
   ${renderLicenseLink(data.license)}
   ## Description
   ${data.description}
-  ## Contribution
-  ${data.contribution}
-  ## Test
-  ${data.test} 
+  As a business owner
+I want to be able to view and manage the departments, roles, and employees in my company
+So that I can organize and plan my business
+```
+
 
 
   ## Questions
